@@ -36,22 +36,33 @@ $("div.btn").click(function(){
 
 // check user answer against game nextSequence
 function checkAnswer(currentLevel) {
+
     if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
-        console.log("success");
-        console.log(gamePattern[currentLevel]);
-        
-
-
+      if (userClickedPattern.length === gamePattern.length){
+        setTimeout(function () {
+          nextSequence();
+        }, 1000);
+      }
     } else {
-        console.log("wrong Correct button is: " + gamePattern[currentLevel]);
-        $("#level-title").text("Game Over, Press Any Key to Restart");
+      playSound("wrong");
+      $("body").addClass("game-over");
+      $("#level-title").text("Game Over, Press Any Key to Restart");
+
+      setTimeout(function () {
+        $("body").removeClass("game-over");
+      }, 200);
+
+      startOver();
     }
 }
 
     
     
 // game pattern
-function nextSequence(){
+    function nextSequence() {
+        userClickedPattern = [];
+        level++;
+        $("#level-title").text("Level " + level);
     var randomNumber = Math.floor(Math.random()*4);
     var randomChosenColour = buttonColors[randomNumber];
     gamePattern.push(randomChosenColour);
@@ -78,8 +89,15 @@ function animatePress(currentColour){
     }, 100);
 }
 
+//start over
+    function startOver() {
+        level = 0;
+        gamePattern = [];
+        started = false;
 
-
+    }
+    console.log(gamePattern);
+    console.log(userClickedPattern);
 
 
 
