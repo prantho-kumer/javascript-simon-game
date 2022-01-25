@@ -42,7 +42,8 @@ function checkAnswer(currentLevel) {
         setTimeout(function () {
           nextSequence();
         }, 1000);
-      }
+        }
+        console.log(userClickedPattern.length-1);
     } else {
       playSound("wrong");
       $("body").addClass("game-over");
@@ -51,7 +52,7 @@ function checkAnswer(currentLevel) {
       setTimeout(function () {
         $("body").removeClass("game-over");
       }, 200);
-
+console.log(userClickedPattern.length-1);
       startOver();
     }
 }
@@ -69,6 +70,7 @@ function checkAnswer(currentLevel) {
 
     $("#"+randomChosenColour).fadeOut(100).fadeIn(100);
     playSound(randomChosenColour);
+console.log(userClickedPattern.length-1);
 
     console.log("game started: "+ started);
     }
@@ -98,6 +100,7 @@ function animatePress(currentColour){
     }
     console.log(gamePattern);
     console.log(userClickedPattern);
+    
 
 
 
